@@ -8,7 +8,7 @@ const {
   updateCategoryByID,
   deleteCategoryByID,
   deleteMultipleCategories,
-} = require("../../controllers/ProductCategory.controller");
+} = require("../../controllers/productCategory.controller");
 
 route.get("/", getAllCategories);
 route.get("/id/:categoryId", getCategoryByID);
