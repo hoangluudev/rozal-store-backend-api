@@ -6,7 +6,7 @@ const {
   deleteCartItemByID,
   handleSelectUserCartItem,
   deleteAllSelectedCartItems,
-} = require("../../controllers/UserCartItem.controller");
+} = require("../../controllers/userCartItem.controller");
 
 const router = express.Router();
 

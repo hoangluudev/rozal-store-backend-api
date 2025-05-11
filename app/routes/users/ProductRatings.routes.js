@@ -2,7 +2,7 @@ const express = require("express");
 const {
   createProductRating,
   updateProductRating,
-} = require("../../controllers/ProductRating.controller");
+} = require("../../controllers/productRating.controller");
 
 const router = express.Router();
 
