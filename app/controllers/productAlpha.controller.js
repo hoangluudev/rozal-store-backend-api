@@ -769,7 +769,7 @@ const getProductByCodeForUser = tryCatch(async (req, res) => {
   const productCode = req.params.productCode;
 
   const result = await productAlphaModel
-    .findOne({ productCode })
+    .findOne({ productCode, isPublished: true })
     .populate("category")
     .populate("productType");
   if (!result) {
@@ -812,7 +812,7 @@ const getProductFilterOptionsForUser = tryCatch(async (req, res) => {
 const getRelatedProductsByCode = tryCatch(async (req, res) => {
   const productCode = req.params.productCode;
   const product = await productAlphaModel
-    .findOne({ productCode })
+    .findOne({ productCode, isPublished: true })
     .populate("category");
   if (!product) {
     return createError(200, "No product found!");
@@ -834,6 +834,28 @@ const getRelatedProductsByCode = tryCatch(async (req, res) => {
     data: result,
   });
 });
+const getProductsByFeatureForUser = tryCatch(async (req, res) => {
+  const result = await productAlphaModel
+    .find({ isPublished: true })
+    .limit(8)
+    .sort({ createdAt: -1, sale: -1 });
+
+  return res.status(200).json({
+    message: "Get featured products success!",
+    data: result,
+  });
+});
+const getProductsByLatestForUser = tryCatch(async (req, res) => {
+  const result = await productAlphaModel
+    .find({ isPublished: true })
+    .limit(8)
+    .sort({ createdAt: -1 });
+
+  return res.status(200).json({
+    message: "Get latest products success!",
+    data: result,
+  });
+});
 
 module.exports = {
   getAllProducts,
@@ -844,6 +866,8 @@ module.exports = {
   deleteMultipleProducts,
   getProductSelectOptions,
   getAllProductsForUser,
+  getProductsByFeatureForUser,
+  getProductsByLatestForUser,
   getProductFilterOptionsForUser,
   getProductByCodeForUser,
   getRelatedProductsByCode,
