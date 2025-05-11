@@ -4,7 +4,7 @@ const productRoutes = require("./managements/product.routes");
 const productAlphaRoutes = require("./managements/productAlpha.routes");
 const orderRoutes = require("./managements/order.routes");
 const categoryRoutes = require("./managements/category.routes");
-const ProductTypeRoutes = require("./managements/ProductType.routes");
+const ProductTypeRoutes = require("./managements/productType.routes");
 const ScheduleJobRoutes = require("./managements/scheduleJob.routes");
 
 const route = express.Router();

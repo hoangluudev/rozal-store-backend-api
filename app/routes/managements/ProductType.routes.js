@@ -8,7 +8,7 @@ const {
   updateProductTypeByID,
   deleteProductTypeByID,
   deleteMultipleProductTypes,
-} = require("../../controllers/ProductType.controller");
+} = require("../../controllers/productType.controller");
 
 route.get("/", getAllProductTypes);
 route.get("/id/:productTypeId", getProductTypeByID);

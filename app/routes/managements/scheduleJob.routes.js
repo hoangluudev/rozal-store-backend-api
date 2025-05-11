@@ -1,7 +1,7 @@
 const express = require("express");
 const {
   createRecurringScheduledJob,
-} = require("../../controllers/ScheduleJob.controller");
+} = require("../../controllers/scheduleJob.controller");
 
 const router = express.Router();
 
