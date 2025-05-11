@@ -1,12 +1,10 @@
 const express = require("express");
-var mongoose = require("mongoose");
 require("dotenv").config();
 const cors = require("cors");
 const app = express();
-const { roleInitial } = require("./data");
 const cookieParser = require("cookie-parser");
 const { errorHandlerMiddleware } = require("./app/middlewares/errorHandler");
-const initializeScheduledJobs = require("./app/services/initializeScheduledJobs");
+const { connectDB } = require("./app/config/db");
 
 const port = process.env.SERVER_PORT || 8000;
 
@@ -19,17 +17,7 @@ app.use(cors(corsOptions));
 app.use(express.json());
 app.use(cookieParser());
 
-mongoose
-  .connect(process.env.MONGODB_URL)
-  .then(() => {
-    console.log("Connect to MongoDB Successfully");
-    roleInitial();
-    initializeScheduledJobs();
-  })
-  .catch((err) => {
-    console.log("Connect MongoDB Failed");
-    console.log("Failed Reason: ", err.message);
-  });
+connectDB();
 
 app.use("/shop24h/auth/users", require("./app/routes/auth.routes"));
 app.use("/shop24h/users", require("./app/routes/user.routes"));
