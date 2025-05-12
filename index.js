@@ -5,11 +5,13 @@ const app = express();
 const cookieParser = require("cookie-parser");
 const { errorHandlerMiddleware } = require("./app/middlewares/errorHandler");
 const { connectDB } = require("./app/config/db");
+const { env } = require("./app/config/environment");
+const allowedOrigin = env.CLIENT_URL;
 
 const port = process.env.SERVER_PORT || 8000;
 
 const corsOptions = {
-  origin: process.env.REACT_APP_URL,
+  origin: allowedOrigin,
   credentials: true,
 };
 

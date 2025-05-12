@@ -10,10 +10,9 @@ const {
   getAllProductByLatest,
 } = require("../controllers/product.controller");
 
+route.get("/", getProductsWithFilter);
 route.get("/featured-product", getAllProductByFeatures);
 route.get("/latest-product", getAllProductByLatest);
-
-route.get("/product", getProductsWithFilter);
 
 route.get("/:productId", getProductByID);
 route.get("/related-products/:productId", getRelatedProductByID);
